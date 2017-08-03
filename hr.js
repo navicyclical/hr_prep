@@ -2056,13 +2056,6 @@ function findFirstWordWithMostRepeatedChars(text) {
   return wordWithMaxRepeatCount;
 }
 
-function assertEqual(output, expected, testName){
-  if (output === expected){
-    console.log("passed");
-  } else {
-    console.log("FAILED" + " " + testName + " expected " + expected + " , but got " + output);
-  }
-}
 
 assertEqual(findFirstWordWithMostRepeatedChars("meow, bark, purr"), "purr", "wordWithMaxRepeatCount");
 
@@ -2128,13 +2121,6 @@ PhoneNumberFormatter.prototype.slice = function(start, end) {
   return this.numbers.slice(start, end).join('');
 };
 
-function assertEqual(output, expected, testName){
-  if (output === expected){
-    console.log("passed");
-  } else {
-    console.log("FAILED" + " " + testName + " expected " + expected + " , but got " + output);
-  }
-}
 var phoneNumber = new PhoneNumberFormatter([9, 2, 5, 6, 8, 2, 3, 0, 3, 3]);
 assertEqual(phoneNumber.render(), "(925) 682-3033", "should be a properly formatted phone number");
 
@@ -2213,14 +2199,6 @@ function sortAscendingByLength(a, b) {
 }
 
 
-function assertEqual(output, expected, testName){
-  if (output === expected){
-    console.log("passed");
-  } else {
-    console.log("FAILED" + " " + testName + " expected " + expected + " , but got " + output);
-  }
-}
-
 assertEqual(findLongestPalindrome("ewe anna civic gillig racecar"), 'racecar', 'should return longest palindrome')
 
 /*
@@ -2294,20 +2272,13 @@ function getGoodsFromDesigner(designerObject){
   return getShoesFromDesigner(designerObject.name, designerObject.shoes).join('\n');
 }
 
-// using the inventory array of objects, we apply a callback to inventory with Array.map. This will apply the getGoodsFromDesigner function as a callback, that callback will go over the key/value pairs and return all the designer's shoes on new lines. 
+// using the inventory array of objects, we apply a callback to inventory with Array.map. This will apply the getGoodsFromDesigner function as a callback, that callback will go over the key/value pairs and return all the designer's shoes on new lines.
 function listInventory(inventory){
   return inventory.map(function(designerObject){
     return getGoodsFromDesigner(designerObject)
   }).join('\n');
 }
 
-function assertEqual(output, expected, testName){
-  if (output === expected){
-    console.log("passed");
-  } else {
-    console.log("FAILED" + " " + testName + " expected " + expected + " , but got " + output);
-  }
-}
 
 assertEqual(renderInventory(currentInventory), expected, 'inventory should match expected');
 
@@ -2353,3 +2324,51 @@ var outputArray = output.split("\n");
 var expectedOutputString = 'Gucci, black leather laced sneakers, 900';
 assertEqual(outputArray.length, 6, 'should return six lines');
 assertEqual(outputArray.pop(), expectedGoodsStringForDesigner, 'should return expected lines of output');
+
+/*
+This is a variation of the "Fashion Inventory" problem.
+
+Please DO NOT paste code from before, however. Tackle each problem on its own.
+
+It's the same inventory data structure as earlier:
+
+var inventory = [
+  {
+    name: 'Brunello Cucinelli',
+    shoes: [
+      {name: 'tasselled black low-top lace-up', price: 1000},
+      {name: 'tasselled green low-top lace-up', price: 1100},
+      {name: 'plain beige suede moccasin', price: 950},
+      {name: 'plain olive suede moccasin', price: 1050}
+    ]
+  },
+  {
+    name: 'Gucci',
+    shoes: [
+      {name: 'red leather laced sneakers', price: 800},
+      {name: 'black leather laced sneakers', price: 900}
+    ]
+  }
+];
+
+Now output the average cost of all shoes per designer in this format:
+
+var expected = {
+  'designers': [
+    {
+      'name': 'Brunello Cucinelli',
+      'averagePrice': 1025
+    },
+    {
+      'name': 'Gucci',
+      'averagePrice': 850
+    }
+  ]
+};
+
+Write your own unit tests.
+
+Starter Code :
+// what's a good main function name to choose?
+
+// what does your outline look like?  don't just dive into coding and make a mess! :)
