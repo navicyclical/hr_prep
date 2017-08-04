@@ -2372,3 +2372,29 @@ Starter Code :
 // what's a good main function name to choose?
 
 // what does your outline look like?  don't just dive into coding and make a mess! :)
+*/
+
+function getInvValues(inventory){
+  var designers = {};
+  var prices = [];
+  designers.price = inventory.price;
+  designers.name = inventory.name;
+  var designerShoes = inventory.shoes;
+  designerShoes.map(function(shoe){
+    prices.push(shoe.price);
+  });
+  designers.price = prices;
+  return designers;
+}
+
+function calculateAverageShoePrice(designerInv){
+  var designer = getInvValues(inventory);
+  var sum = designer.prices.reduce(a, b){
+    return a + b;
+  }
+  return sum;
+}
+
+function renderAveragePriceForDesigner(){
+
+}
