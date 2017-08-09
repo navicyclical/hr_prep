@@ -1,10 +1,3 @@
-/*
-This is a variation of the "Fashion Inventory" problem.
-
-Please DO NOT paste code from before, however. Tackle each problem on its own.
-
-It's the same inventory data structure as earlier:
-
 var inventory = [
   {
     name: 'Brunello Cucinelli',
@@ -24,28 +17,6 @@ var inventory = [
   }
 ];
 
-Now output the average cost of all shoes per designer in this format:
-
-var expected = {
-  'designers': [
-    {
-      'name': 'Brunello Cucinelli',
-      'averagePrice': 1025
-    },
-    {
-      'name': 'Gucci',
-      'averagePrice': 850
-    }
-  ]
-};
-
-Write your own unit tests.
-
-Starter Code :
-// what's a good main function name to choose?
-
-// what does your outline look like?  don't just dive into coding and make a mess! :)
-*/
 function average(numbers){
   return sum(numbers) / numbers.length;
 }
@@ -73,11 +44,13 @@ function calculateAveragePricePerDesigner(designerInv){
 // return the single designer as an object of all of them
 function renderDesignersWithAveragePrices(inventory){
   return {
-    designers: inventory.map(calculateAveragePricePerDesigner);
-  }
+    designers: inventory.map(calculateAveragePricePerDesigner)
+  };
 }
 
 function assertEqual(actual, expected, testName){
+  actual = JSON.stringify(actual);
+  expected = JSON.stringify(expected);
   if (actual === expected){
     console.log("passed");
   } else {
@@ -87,7 +60,11 @@ function assertEqual(actual, expected, testName){
 
 var output = renderDesignersWithAveragePrices(inventory);
 var designer = inventory[0];
+var singleDesigner = calculateAveragePricePerDesigner(inventory[0]);
 var expectedAveragePrice = 1025;
 
+assertEqual(sum([1, 2, 3]), 6, 'should return a sum of integers');
+assertEqual(average([1, 2, 3]), 2, 'should return the average of the integers');
+assertEqual(getInvPrices(designer), [1000, 1100, 950, 1050], 'should return a filtered array of values');
 assertEqual(typeof output, 'object', 'should return an object');
-assertEqual(getInvPrices(designer), [1000, 1100, 950, 1050], 'should return an array of values');
+assertEqual(singleDesigner.averagePrice, expectedAveragePrice, 'value for averagePrice should be equal');
