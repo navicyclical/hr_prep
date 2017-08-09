@@ -46,28 +46,48 @@ Starter Code :
 
 // what does your outline look like?  don't just dive into coding and make a mess! :)
 */
+function average(numbers){
+  return sum(numbers) / numbers.length;
+}
 
-function getInvValues(inventory){
-  var designers = {};
-  var prices = [];
-  designers.price = inventory.price;
-  designers.name = inventory.name;
-  var designerShoes = inventory.shoes;
-  designerShoes.map(function(shoe){
-    prices.push(shoe.price);
+function sum(numbers){
+  return numbers.reduce(function(num1, num2){
+    return num1 + num2;
   });
-  designers.price = prices;
-  return designers;
 }
 
-function calculateAverageShoePrice(designerInv){
-  var designer = getInvValues(inventory);
-  var sum = designer.prices.reduce(a, b){
-    return a + b;
+//grab the price values from inventory
+function getInvPrices(designerInv){
+  return designerInv.shoes.map(function(shoe){
+    // go through the object, apply .map with a callback on the shoes array in the designer object
+    return shoe.price;
+  });
+}
+// calculate averages and build the designer object
+function calculateAveragePricePerDesigner(designerInv){
+  return {
+    name: designerInv.name,
+    averagePrice: average(getInvPrices(designerInv))
   }
-  return sum;
+}
+// return the single designer as an object of all of them
+function renderDesignersWithAveragePrices(inventory){
+  return {
+    designers: inventory.map(calculateAveragePricePerDesigner);
+  }
 }
 
-function renderAveragePriceForDesigner(){
-
+function assertEqual(actual, expected, testName){
+  if (actual === expected){
+    console.log("passed");
+  } else {
+    console.log("FAILED" + " " + testName + " expected " + expected + " , but got " + output);
+  }
 }
+
+var output = renderDesignersWithAveragePrices(inventory);
+var designer = inventory[0];
+var expectedAveragePrice = 1025;
+
+assertEqual(typeof output, 'object', 'should return an object');
+assertEqual(getInvPrices(designer), [1000, 1100, 950, 1050], 'should return an array of values');
