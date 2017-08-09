@@ -39,7 +39,7 @@ function calculateAveragePricePerDesigner(designerInv){
   return {
     name: designerInv.name,
     averagePrice: average(getInvPrices(designerInv))
-  }
+  };
 }
 // return the single designer as an object of all of them
 function renderDesignersWithAveragePrices(inventory){
