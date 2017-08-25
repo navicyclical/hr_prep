@@ -35,12 +35,15 @@ function getShoeNames(shoeList){
 // find the position of the wordsin question
 function findTargetWordIndex(shoeList, wordToCheck){
   var shoeNames = getShoeNames(shoeList);
-  for (var i = 0; i < shoeNames.length; i++){
-    var word = shoeNames[i];
-    if (word === wordToCheck){
-      return i;
-    }
-  }
+  shoeNames.forEach(function(){
+
+  });
 }
 
 // return an object, with nameWords and the index of the word in question
+function findInventory(inventory){
+  return {
+    nameWords: getShoeNames(shoeList),
+    targetWordIndex: findTargetWordIndex(shoeList, word)
+  };
+}
