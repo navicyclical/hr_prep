@@ -97,25 +97,42 @@ function assertEqual(actual, expected, testName){
   }
 }
 
+function findInventory(inventory){
+  var acc = [];
+  for (var designer of inventory){
+    acc = acc.concat(getShoeFromDesigner(designer.shoes));
+  }
+  return acc;
+}
 // go over the input array, grab just the shoe name, return as an array
-function getShoeNames(shoeList){
-  return shoeList.map(function(shoe){
-   return shoe.name.split(" ");
- });
+function getShoeFromDesigner(shoeList){
+  var returnArray = [];
+  for (var shoe of shoeList){
+    var nameWords = shoe.name.split(' ');
+    for (var i = 0; i < nameWords.length; i++){
+      var word = nameWords[i];
+      if (word.includes("lace")){
+         returnArray.push({
+           "nameWords": nameWords;
+           "targetWordIndex": i;
+         });
+      }
+    }
+  }
 }
 
 // find the position of the words in question
-function findTargetWordIndex(shoeList, wordToCheck){
-  var shoeNames = getShoeNames(shoeList);
-  shoeNames.forEach(function(name){
-    return name.indexOf(wordToCheck);
-  });
-}
+// function findTargetWordIndex(inventory, wordToCheck){
+//   var shoeNames = getShoeNames(inventory);
+//   shoeNames.forEach(function(name){
+//     return name.indexOf(wordToCheck);
+//   });
+// }
 
 // return an object, with nameWords and the index of the word in question
 function findInventory(inventory){
-  return {
-    nameWords: getShoeNames(shoeList),
-    targetWordIndex: findTargetWordIndex(shoeList, word)
-  };
+  // return {
+  //   nameWords: getShoeNames(inventory),
+  //   targetWordIndex: findTargetWordIndex(inventory, word)
+  // };
 }
